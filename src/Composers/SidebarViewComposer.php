@@ -3,11 +3,12 @@
 namespace TypiCMS\Modules\Contacts\Composers;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Sidebar\SidebarGroup;
 use Maatwebsite\Sidebar\SidebarItem;
-use TypiCMS\Modules\Core\Composers\BaseSidebarViewComposer;
 
-class SidebarViewComposer extends BaseSidebarViewComposer
+class SidebarViewComposer
 {
     public function compose(View $view)
     {
@@ -17,10 +18,10 @@ class SidebarViewComposer extends BaseSidebarViewComposer
             $group->addItem(trans('contacts::global.name'), function (SidebarItem $item) {
                 $item->icon = config('typicms.contacts.sidebar.icon', 'icon fa fa-fw fa-envelope');
                 $item->weight = config('typicms.contacts.sidebar.weight');
-                $item->route('admin.contacts.index');
-                $item->append('admin.contacts.create');
+                $item->route('admin::index-contacts');
+                $item->append('admin::create-contacts');
                 $item->authorize(
-                    $this->auth->hasAccess('contacts.index')
+                    Gate::allows('index-contacts')
                 );
             });
         });
