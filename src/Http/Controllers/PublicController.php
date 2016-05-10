@@ -12,7 +12,7 @@ class PublicController extends BasePublicController
 
     public function __construct(ContactInterface $contact)
     {
-        parent::__construct($contact);
+        parent::__construct($contact, 'contacts');
     }
 
     /**
