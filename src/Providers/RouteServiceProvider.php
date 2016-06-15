@@ -34,7 +34,7 @@ class RouteServiceProvider extends ServiceProvider
             if ($page = TypiCMS::getPageLinkedToModule('contacts')) {
                 $options = $page->private ? ['middleware' => 'auth'] : [];
                 foreach (config('translatable.locales') as $lang) {
-                    if ($uri = $page->uri($lang)) {
+                    if ($page->translate($lang)->status && $uri = $page->uri($lang)) {
                         $router->get($uri, $options + ['as' => $lang.'.contacts', 'uses' => 'PublicController@form']);
                         $router->get($uri.'/sent', $options + ['as' => $lang.'.contacts.sent', 'uses' => 'PublicController@sent']);
                         $router->post($uri, $options + ['as' => $lang.'.contacts.store', 'uses' => 'PublicController@store']);
@@ -45,18 +45,18 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * Admin routes
              */
-            $router->get('admin/contacts', ['as' => 'admin.contacts.index', 'uses' => 'AdminController@index']);
-            $router->get('admin/contacts/create', ['as' => 'admin.contacts.create', 'uses' => 'AdminController@create']);
-            $router->get('admin/contacts/{contact}/edit', ['as' => 'admin.contacts.edit', 'uses' => 'AdminController@edit']);
-            $router->post('admin/contacts', ['as' => 'admin.contacts.store', 'uses' => 'AdminController@store']);
-            $router->put('admin/contacts/{contact}', ['as' => 'admin.contacts.update', 'uses' => 'AdminController@update']);
+            $router->get('admin/contacts', 'AdminController@index')->name('admin::index-contacts');
+            $router->get('admin/contacts/create', 'AdminController@create')->name('admin::create-contact');
+            $router->get('admin/contacts/{contact}/edit', 'AdminController@edit')->name('admin::edit-contact');
+            $router->post('admin/contacts', 'AdminController@store')->name('admin::store-contact');
+            $router->put('admin/contacts/{contact}', 'AdminController@update')->name('admin::update-contact');
 
             /*
              * API routes
              */
-            $router->get('api/contacts', ['as' => 'api.contacts.index', 'uses' => 'ApiController@index']);
-            $router->put('api/contacts/{contact}', ['as' => 'api.contacts.update', 'uses' => 'ApiController@update']);
-            $router->delete('api/contacts/{contact}', ['as' => 'api.contacts.destroy', 'uses' => 'ApiController@destroy']);
+            $router->get('api/contacts', 'ApiController@index')->name('api::index-contacts');
+            $router->put('api/contacts/{contact}', 'ApiController@update')->name('api::update-contact');
+            $router->delete('api/contacts/{contact}', 'ApiController@destroy')->name('api::destroy-contact');
         });
     }
 }

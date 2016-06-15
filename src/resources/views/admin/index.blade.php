@@ -1,6 +1,13 @@
+@extends('core::admin.master')
+
+@section('title', trans('contacts::global.name'))
+
+@section('main')
+
 <div ng-app="typicms" ng-cloak ng-controller="ListController">
 
-    <a href="{{ route('admin.' . $module . '.create') }}" class="btn-add"><i class="fa fa-plus-circle"></i><span class="sr-only">New</span></a>
+    @include('core::admin._button-create', ['module' => 'contacts'])
+
     <h1>
         <span>@{{ models.length }} @choice('contacts::global.contacts', 2)</span>
     </h1>
@@ -42,7 +49,7 @@
                 <tr ng-repeat="model in displayedModels">
                     <td typi-btn-delete action="delete(model, model.title + ' ' + model.first_name + ' ' + model.last_name)"></td>
                     <td>
-                        @include('core::admin._button-edit')
+                        @include('core::admin._button-edit', ['module' => 'contacts'])
                     </td>
                     <td>@{{ model.first_name }}</td>
                     <td>@{{ model.last_name }}</td>
@@ -60,3 +67,5 @@
     </div>
 
 </div>
+
+@endsection
