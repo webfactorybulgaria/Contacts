@@ -9,7 +9,7 @@
     @include('core::admin._button-create', ['module' => 'contacts'])
 
     <h1>
-        <span>@{{ models.length }} @choice('contacts::global.contacts', 2)</span>
+        <span>@{{ totalModels }} @choice('contacts::global.contacts', 2)</span>
     </h1>
 
     <div class="btn-toolbar">
@@ -18,8 +18,11 @@
 
     <div class="table-responsive">
 
-        <table st-persist="contactsTable" st-table="displayedModels" st-safe-src="models" st-order st-filter class="table table-condensed table-main">
+        <table st-persist="contactsTable" st-table="displayedModels" st-order st-sort-default="email" st-pipe="callServer" st-filter class="table table-condensed table-main">
             <thead>
+                <tr>
+                    <td colspan="6" st-items-by-page="itemsByPage" st-pagination="" st-template="/views/partials/pagination.custom.html"></td>
+                </tr>
                 <tr>
                     <th class="delete"></th>
                     <th class="edit"></th>
@@ -59,7 +62,10 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="6" typi-pagination></td>
+                    <td colspan="5" st-items-by-page="itemsByPage" st-pagination="" st-template="/views/partials/pagination.custom.html"></td>
+                    <td>
+                        <div ng-include="'/views/partials/pagination.itemsPerPage.html'"></div>
+                    </td>
                 </tr>
             </tfoot>
         </table>
