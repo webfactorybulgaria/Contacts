@@ -2,9 +2,9 @@
 
 namespace TypiCMS\Modules\Contacts\Http\Controllers;
 
-use TypiCMS\Modules\Contacts\Http\Requests\FormRequest;
-use TypiCMS\Modules\Contacts\Repositories\ContactInterface;
-use TypiCMS\Modules\Core\Http\Controllers\BasePublicController;
+use TypiCMS\Modules\Contacts\Custom\Http\Requests\FormRequest;
+use TypiCMS\Modules\Contacts\Custom\Repositories\ContactInterface;
+use TypiCMS\Modules\Core\Custom\Http\Controllers\BasePublicController;
 
 class PublicController extends BasePublicController
 {
