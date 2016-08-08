@@ -1,6 +1,6 @@
 <?php
 
-namespace TypiCMS\Modules\Contacts\Custom\Repositories;
+namespace TypiCMS\Modules\Contacts\Shells\Repositories;
 
 use TypiCMS\Modules\Contacts\Repositories\EloquentContact as Base;
 

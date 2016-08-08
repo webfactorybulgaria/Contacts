@@ -3,15 +3,15 @@
 namespace TypiCMS\Modules\Contacts\Models;
 
 use Laracasts\Presenter\PresentableTrait;
-use TypiCMS\Modules\Core\Custom\Models\Base;
-use TypiCMS\Modules\History\Custom\Traits\Historable;
+use TypiCMS\Modules\Core\Shells\Models\Base;
+use TypiCMS\Modules\History\Shells\Traits\Historable;
 
 class Contact extends Base
 {
     use Historable;
     use PresentableTrait;
 
-    protected $presenter = 'TypiCMS\Modules\Contacts\Custom\Presenters\ModulePresenter';
+    protected $presenter = 'TypiCMS\Modules\Contacts\Shells\Presenters\ModulePresenter';
 
     protected $fillable = [
         'title',

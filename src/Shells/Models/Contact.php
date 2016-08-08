@@ -1,6 +1,6 @@
 <?php
 
-namespace TypiCMS\Modules\Contacts\Custom\Models;
+namespace TypiCMS\Modules\Contacts\Shells\Models;
 
 use TypiCMS\Modules\Contacts\Models\Contact as Base;
 

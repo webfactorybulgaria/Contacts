@@ -3,9 +3,9 @@
 namespace TypiCMS\Modules\Contacts\Http\Controllers;
 
 use Illuminate\Support\Facades\Request;
-use TypiCMS\Modules\Contacts\Custom\Models\Contact;
-use TypiCMS\Modules\Contacts\Custom\Repositories\ContactInterface as Repository;
-use TypiCMS\Modules\Core\Custom\Http\Controllers\BaseApiController;
+use TypiCMS\Modules\Contacts\Shells\Models\Contact;
+use TypiCMS\Modules\Contacts\Shells\Repositories\ContactInterface as Repository;
+use TypiCMS\Modules\Core\Shells\Http\Controllers\BaseApiController;
 
 class ApiController extends BaseApiController
 {
@@ -49,7 +49,7 @@ class ApiController extends BaseApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param \TypiCMS\Modules\Contacts\Custom\Models\Contact $contact
+     * @param \TypiCMS\Modules\Contacts\Shells\Models\Contact $contact
      *
      * @return \Illuminate\Http\JsonResponse
      */
