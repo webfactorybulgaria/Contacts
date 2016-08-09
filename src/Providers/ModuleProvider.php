@@ -5,13 +5,13 @@ namespace TypiCMS\Modules\Contacts\Providers;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
-use TypiCMS\Modules\Contacts\Events\EventHandler;
-use TypiCMS\Modules\Contacts\Models\Contact;
-use TypiCMS\Modules\Contacts\Repositories\CacheDecorator;
-use TypiCMS\Modules\Contacts\Repositories\EloquentContact;
-use TypiCMS\Modules\Core\Facades\TypiCMS;
-use TypiCMS\Modules\Core\Observers\FileObserver;
-use TypiCMS\Modules\Core\Services\Cache\LaravelCache;
+use TypiCMS\Modules\Contacts\Shells\Events\EventHandler;
+use TypiCMS\Modules\Contacts\Shells\Models\Contact;
+use TypiCMS\Modules\Contacts\Shells\Repositories\CacheDecorator;
+use TypiCMS\Modules\Contacts\Shells\Repositories\EloquentContact;
+use TypiCMS\Modules\Core\Shells\Facades\TypiCMS;
+use TypiCMS\Modules\Core\Shells\Observers\FileObserver;
+use TypiCMS\Modules\Core\Shells\Services\Cache\LaravelCache;
 
 class ModuleProvider extends ServiceProvider
 {
@@ -56,7 +56,7 @@ class ModuleProvider extends ServiceProvider
         /*
          * Register route service provider
          */
-        $app->register('TypiCMS\Modules\Contacts\Providers\RouteServiceProvider');
+        $app->register('TypiCMS\Modules\Contacts\Shells\Providers\RouteServiceProvider');
 
         /*
          * Register Honeypot
@@ -66,7 +66,7 @@ class ModuleProvider extends ServiceProvider
         /*
          * Sidebar view composer
          */
-        $app->view->composer('core::admin._sidebar', 'TypiCMS\Modules\Contacts\Composers\SidebarViewComposer');
+        $app->view->composer('core::admin._sidebar', 'TypiCMS\Modules\Contacts\Shells\Composers\SidebarViewComposer');
 
         /*
          * Add the page in the view.
@@ -75,7 +75,7 @@ class ModuleProvider extends ServiceProvider
             $view->page = TypiCMS::getPageLinkedToModule('contacts');
         });
 
-        $app->bind('TypiCMS\Modules\Contacts\Repositories\ContactInterface', function (Application $app) {
+        $app->bind('TypiCMS\Modules\Contacts\Shells\Repositories\ContactInterface', function (Application $app) {
             $repository = new EloquentContact(new Contact());
             if (!config('typicms.cache')) {
                 return $repository;
