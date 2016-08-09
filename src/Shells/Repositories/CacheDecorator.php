@@ -2,9 +2,9 @@
 
 namespace TypiCMS\Modules\Contacts\Shells\Repositories;
 
-use TypiCMS\Modules\Contacts\Repositories\CacheDecorator as Base;
+use TypiCMS\Modules\Contacts\Repositories\CacheDecorator as BaseClass;
 
-class CacheDecorator extends Base implements ContactInterface
+class CacheDecorator extends BaseClass implements ContactInterface
 {
 
 }

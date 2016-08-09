@@ -2,9 +2,9 @@
 
 namespace TypiCMS\Modules\Contacts\Shells\Models;
 
-use TypiCMS\Modules\Contacts\Models\Contact as Base;
+use TypiCMS\Modules\Contacts\Models\Contact as BaseClass;
 
-class Contact extends Base
+class Contact extends BaseClass
 {
 
 }
