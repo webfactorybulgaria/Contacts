@@ -4,8 +4,9 @@
 
 @section('main')
 
+<div class="container">
     @if (!$errors->isEmpty())
-        <div class="alert alert-danger alert-dismissable">
+        <div class="alert alert-danger alert-dismissable mt-2">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             @lang('db.message when errors in form').
             <ul>
@@ -25,5 +26,6 @@
     <button class="btn-primary btn btn-block btn-lg" type="submit">@lang('validation.attributes.send')</button>
 
     {!! BootForm::close() !!}
+</div>
 
 @endsection
